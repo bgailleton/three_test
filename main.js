@@ -28,7 +28,7 @@ const init = async function()
 	mg.run_nit_v4(10, 5, 5, a, Es, 1);
 // 
 	let res = mg.gettopo();
-	let HS = mg.get_HS();
+	// let HS = mg.get_HS();
 	let maxi = Math.max.apply(null,res);
 	console.log(maxi)
 
@@ -129,7 +129,7 @@ var axes = new THREE.AxisHelper(100);
 scene.add(axes);
 
 var camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
-camera.position.set(20, -80, 100);
+camera.position.set(0, -500, 300);
 scene.add(camera);
 
 var renderer = new THREE.WebGLRenderer();
@@ -146,3 +146,7 @@ function render() {
     requestAnimationFrame(render);
     renderer.render(scene, camera);
 }
+
+// function regenerate(){
+	
+// }
