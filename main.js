@@ -28,7 +28,9 @@ const init = async function()
 	mg.run_nit_v4(10, 5, 5, a, Es, 1);
 // 
 	let res = mg.gettopo();
-// 	let HS = mg.get_HS();
+	let HS = mg.get_HS();
+	let maxi = Math.max.apply(null,res);
+	console.log(maxi)
 
 
 
@@ -72,21 +74,31 @@ const init = async function()
 // used the buffer to create a DataArrayTexture
 
 
-	var geometry = await new THREE.PlaneGeometry(nx,ny, nx-1, ny-1);
+	var geometry = await new THREE.PlaneGeometry(nx*2,ny*2, nx-1, ny-1);
 	// console.log(geometry)
 	  // console.log(geometry.attributes.position)
+	colors = []
+
 
 
 	for (var i = 0; i < nxy; i++) {
 	  geometry.attributes.position.array[i * 3 + 2] = res[i]/dx
+	  colors.push(res[i]/maxi,res[i]/maxi,res[i]/maxi)
+	  // geometry.attributes.face.array[i].vertex = res[i]/dx
 	}
+	geometry.setAttribute(
+      'color',
+      new THREE.BufferAttribute(new Float32Array(colors), 3));
 
-	var material = new THREE.MeshPhongMaterial({
-		// map:texture,
-		emissive:"gray",
-		wireframe: true
+	// var material = new THREE.MeshPhongMaterial({
+	// 	// map:texture,
+	// 	emissive:"gray",
+	// 	wireframe: true
 
-	});
+	// });
+
+
+	var material =new THREE.MeshBasicMaterial({vertexColors: THREE.VertexColors})
 
 
 	console.log("5")
