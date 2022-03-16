@@ -154,6 +154,7 @@ const init = async function()
 	WGLelement = renderer.domElement
 	document.getElementById('webgl1').appendChild(renderer.domElement);
 	WGLelement.style.width = "25cm"
+	WGLelement.style.maxWidth = "95%"
 	WGLelement.style.height = "auto"
 	WGLelement.style.resize= "both";
   WGLelement.style.overflow= "auto";
