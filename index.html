@@ -1,21 +1,24 @@
 <!doctype html>
 <html lang="en">
-<head>
-<title>three.js - Jotunheimen</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-<style>
-    body { margin: 0; overflow: hidden; }
-</style>
-</head>
-<body>
-<div id="webgl1"></div>
-<div id="webgl2"></div>
-<script type="text/javascript" src="./minimalgraph.js"></script>
-<script src="./three.js"></script>
-<script src="./TrackballControls.js"></script> 
-<script src="./main.js"></script>
-</body>
+	<head>
+		<title>Procedural Landscape Generator (alpha)</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+		    body { margin: 0; overflow: hidden; color: gray; font-family: monospace;}
+		</style>
+	</head>
+	<body>
+			<h1>Procedural Landscape generator</h1>
+			<button id="generateButton" type="button" style="display: none;">Generate new landscape</button> 
+
+			<div style="margin: 20px 0;" id="webgl1"></div>
+			<div id="webgl2"></div>
+			<script type="text/javascript" src="./minimalgraph.js"></script>
+			<script src="./three.js"></script>
+			<script src="./TrackballControls.js"></script> 
+			<script src="./main.js"></script>
+	</body>
 </html>
 
 

@@ -1,5 +1,45 @@
 let mg = null;
 let mgModule =null;
+let plane = null;
+
+async function regenerate(){
+	let nx = 200
+	let ny = 200
+	let nxy = nx * ny;
+	let dx = 50
+	let dy = 50
+	let a = new Int32Array(nxy); for (let i=0; i<nxy; i++) a[i] = 0;
+	let Es = new Float32Array(nxy); for (let i=0; i<nxy; i++) Es[i] = 1e-3;
+
+	mg.run_nit_v4(10, 5, 5, a, Es, 1);
+// 
+	let res = mg.gettopo();
+	// let HS = mg.get_HS();
+	let maxi = Math.max.apply(null,res);
+	scene.remove( plane );
+
+
+	var geometry = await new THREE.PlaneGeometry(nx*2,ny*2, nx-1, ny-1);
+
+	colors = []
+
+	for (var i = 0; i < nxy; i++) {
+	  geometry.attributes.position.array[i * 3 + 2] = res[i]/dx
+	  colors.push(res[i]/maxi,res[i]/maxi,res[i]/maxi)
+	  // geometry.attributes.face.array[i].vertex = res[i]/dx
+	}
+	geometry.setAttribute(
+      'color',
+      new THREE.BufferAttribute(new Float32Array(colors), 3));
+
+
+	var material =new THREE.MeshBasicMaterial({vertexColors: THREE.VertexColors})
+
+	plane = new THREE.Mesh(geometry, material);
+
+	scene.add(plane);
+	
+}
 
 
 const init = async function()
@@ -25,7 +65,7 @@ const init = async function()
 	let Es = new Float32Array(nxy); for (let i=0; i<nxy; i++) Es[i] = 1e-3;
 	mg.add_label_full(0.45,1,1e-5,0.5,1);
 	// mg.run_nit_v4(2, 2, 2, a, Es, 1);
-	mg.run_nit_v4(10, 5, 5, a, Es, 1);
+	mg.run_nit_v4(6, 3, 5, a, Es, 1);
 // 
 	let res = mg.gettopo();
 	// let HS = mg.get_HS();
@@ -103,7 +143,8 @@ const init = async function()
 
 	console.log("5")
 
-	var plane = new THREE.Mesh(geometry, material);
+	plane = new THREE.Mesh(geometry, material);
+
 	scene.add(plane);
 
 	// const light = new THREE.PointLight("white", 100)
@@ -111,11 +152,17 @@ const init = async function()
 	// scene.add(light)
 
 	document.getElementById('webgl1').appendChild(renderer.domElement);
+	console.log("YOLO")
+	console.log(document.getElementById("generateButton"))
+	document.getElementById("generateButton").style.display = "inline";
+	document.getElementById("generateButton").addEventListener("click",regenerate)
 
 	console.log("6")
 
 
 	render();
+
+	// setInterval(regenerate, 1000);
 }
 
 
@@ -147,6 +194,3 @@ function render() {
     renderer.render(scene, camera);
 }
 
-// function regenerate(){
-	
-// }
