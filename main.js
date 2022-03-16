@@ -155,6 +155,8 @@ const init = async function()
 	document.getElementById('webgl1').appendChild(renderer.domElement);
 	WGLelement.style.width = "25cm"
 	WGLelement.style.height = "auto"
+	WGLelement.style.resize= "both";
+  WGLelement.style.overflow= "auto";
 	console.log("YOLO")
 	console.log(document.getElementById("generateButton"))
 	document.getElementById("generateButton").style.display = "inline";
