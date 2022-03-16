@@ -154,9 +154,12 @@ const init = async function()
 	WGLelement = renderer.domElement
 	document.getElementById('webgl1').appendChild(renderer.domElement);
 	WGLelement.style.width = "25cm"
-	WGLelement.style.maxWidth = "90%"
-	document.getElementById('webgl1').style.maxWidth = "90%"
-	WGLelement.style.height = "auto"
+	WGLelement.style.maxWidth = "100%"
+	document.getElementById('webgl1').style.maxWidth = "100%"
+	// WGLelement.style.height = "auto"
+	WGLelement.style.maxHeight = "100%"
+	// document.getElementById('webgl1').style.height = "auto"
+	document.getElementById('webgl1').style.maxHeight = "100%"
 	WGLelement.style.resize= "both";
   WGLelement.style.overflow= "auto";
 	console.log("YOLO")
