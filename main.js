@@ -1,6 +1,7 @@
 let mg = null;
 let mgModule =null;
 let plane = null;
+let WGLelement = null;
 
 async function regenerate(){
 	let nx = 200
@@ -150,8 +151,10 @@ const init = async function()
 	// const light = new THREE.PointLight("white", 100)
 	// light.position.set(100, 100, 100)
 	// scene.add(light)
-
+	WGLelement = renderer.domElement
 	document.getElementById('webgl1').appendChild(renderer.domElement);
+	WGLelement.style.width = "25cm"
+	WGLelement.style.height = "auto"
 	console.log("YOLO")
 	console.log(document.getElementById("generateButton"))
 	document.getElementById("generateButton").style.display = "inline";
