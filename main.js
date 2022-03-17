@@ -12,6 +12,26 @@ async function regenerate(){
 	let a = new Int32Array(nxy); for (let i=0; i<nxy; i++) a[i] = 0;
 	let Es = new Float32Array(nxy); for (let i=0; i<nxy; i++) Es[i] = 1e-3;
 
+	mg.reset_labels()
+
+	let m = 0.45;
+	let n = 1;
+	let K = (Math.random() * 3 + 1) * 1e-5
+	let Sc = Math.random() * 0.4 + 0.3
+	let array = [0,1e5,2e5]
+	let Acrit =  array[Math.floor(Math.random() * array.length)]
+
+	mg.add_label_full(m,n,K,Sc,Acrit);
+	console.log("m" + m)
+	console.log("n" + n)
+	console.log("K" + K)
+	console.log("Sc" + Sc)
+	console.log("Acrit" + Acrit)
+
+
+
+
+
 	mg.run_nit_v4(10, 5, 5, a, Es, 1);
 // 
 	let res = mg.gettopo();
